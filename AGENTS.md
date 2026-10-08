@@ -19,7 +19,7 @@ Everything under `docs/` is public. Never put source files, drafts or anything p
 ## Landing pages
 
 - Each page is self-contained: one `index.html` with inline `<style>` and `<script>`, plus its own `assets/` folder.
-- New trips go in a new sibling folder (`docs/<slug>/`). Copy `docs/mexico/index.html` as a starting point.
+- New trips go in a new sibling folder (`docs/<slug>/`), with a lowercase slug. `docs/404.html` redirects mixed-case URLs (e.g. `/Mexico`) to lowercase. Copy `docs/mexico/index.html` as a starting point.
 - **No third-party assets.** Images, fonts and scripts are all hosted in this repo. Outbound links (such as Calendly booking links) are fine. To check, the only URLs left in a page should be links:
   ```sh
   grep -o 'https\?://[^"'"'"' )]*' docs/<slug>/index.html | sort -u
