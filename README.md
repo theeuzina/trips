@@ -1,6 +1,6 @@
 # The Eu Zina – Trips
 
-Static landing pages for the Eu Zina website, served from https://trips.theeuzina.com/
+Static landing pages for the Eu Zina website, served at https://trips.theeuzina.com/ from the [docs](./docs/) folder.
 
 ## [Mexico City 2027](https://trips.theeuzina.com/) ([docs/mexico/](./docs/mexico/))
 
