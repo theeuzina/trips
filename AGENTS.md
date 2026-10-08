@@ -8,6 +8,7 @@ Guidance for agents working on this repo: static landing pages for EU Zina trips
 docs/                    GitHub Pages root, served at https://trips.theeuzina.com/
   CNAME                  Custom domain. Managed by GitHub Pages; don't edit.
   index.html             Redirects the bare domain to https://www.theeuzina.com/
+  favicon.svg, favicon.ico  Shared site icon (the theeuzina.com mark; .ico is a 48px fallback)
   <slug>/index.html      One landing page per trip, e.g. docs/mexico/
   <slug>/assets/         That page's published images and fonts
 originals/<slug>/        Full-size source images for each page. Committed, NOT published.
@@ -24,6 +25,7 @@ Everything under `docs/` is public. Never put source files, drafts or anything p
   grep -o 'https\?://[^"'"'"' )]*' docs/<slug>/index.html | sort -u
   ```
 - Fonts (DM Sans and Fraunces, variable `woff2`, latin and latin-ext subsets) are self-hosted in `docs/mexico/assets/fonts/` and declared with `@font-face` in the page's `<style>`. If a new page uses the same fonts, move them to a shared `docs/assets/fonts/` and point both pages at it instead of duplicating them.
+- Link the shared icon in `<head>`: `<link rel="icon" href="/favicon.ico" sizes="48x48">` and `<link rel="icon" href="/favicon.svg" type="image/svg+xml">`.
 - Add a section for the new page to `README.md`.
 
 ## Images
