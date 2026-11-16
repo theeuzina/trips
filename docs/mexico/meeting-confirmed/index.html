@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Call Scheduled · EU Zina Mexico City</title>
+  <meta name="description" content="Your personal call with Zina is scheduled.">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="../assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','27046946568327675');
+    fbq('track','PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
+  <style>
+    @font-face{font-family:"DM Sans";font-style:normal;font-weight:400 700;font-display:swap;src:url(../assets/fonts/dm-sans-latin.woff2) format("woff2")}@font-face{font-family:"Fraunces";font-style:normal;font-weight:400 700;font-display:swap;src:url(../assets/fonts/fraunces-latin.woff2) format("woff2")}
+    :root{--sun:#efc548;--jade:#0d5b56;--ink:#1d1a18;--serif:"Fraunces",Georgia,serif;--sans:"DM Sans",Arial,sans-serif}*{box-sizing:border-box}body{margin:0;min-height:100svh;background:linear-gradient(rgba(4,30,27,.7),rgba(4,30,27,.88)),url('../assets/eu-zina-people-1200.webp') center/cover;color:#fff;font-family:var(--sans);display:grid;place-items:center;padding:32px}.card{width:min(860px,100%);background:rgba(13,91,86,.94);border:1px solid rgba(255,255,255,.35);padding:clamp(38px,8vw,88px);box-shadow:0 24px 70px rgba(0,0,0,.3)}.logo{display:block;width:190px;height:auto;filter:drop-shadow(0 2px 5px rgba(0,0,0,.35));margin-bottom:50px}.label{text-transform:uppercase;letter-spacing:.19em;font-size:12px;font-weight:700;color:var(--sun)}h1{font:600 clamp(3.4rem,9vw,7.2rem)/.86 var(--serif);letter-spacing:-.055em;margin:.25em 0}p{max-width:660px;font-size:clamp(17px,2.2vw,21px);line-height:1.65}.button{display:inline-flex;margin-top:24px;padding:15px 22px;border:1px solid var(--sun);color:var(--ink);background:var(--sun);text-decoration:none;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:700}
+  </style>
+</head>
+<body>
+  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=27046946568327675&amp;ev=PageView&amp;noscript=1"></noscript>
+  <main class="card">
+    <img class="logo" src="../assets/eu-zina-logo.svg" width="190" height="59" alt="EU Zina">
+    <p class="label">Mexico City · February 19–24, 2027</p>
+    <h1>Your call with Zina is scheduled.</h1>
+    <p><strong>You’re one step closer to Mexico City.</strong></p>
+    <p>Check your inbox for the meeting confirmation and details. Zina looks forward to learning more about you, answering your questions and helping you decide whether this experience is the right fit.</p>
+    <a class="button" href="../">Return to the Mexico City trip</a>
+  </main>
+  <script>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const bookingId = params.get('invitee') || params.get('event') || params.get('booking') || params.get('uuid');
+      const dedupeKey = `eu-zina-meta-schedule:${bookingId || 'confirmation-page'}`;
+      if (localStorage.getItem(dedupeKey)) return;
+      const trackSchedule = () => {
+        if (typeof window.fbq !== 'function') return false;
+        window.fbq('track', 'Schedule', {}, bookingId ? { eventID: `calendly-${bookingId}` } : undefined);
+        localStorage.setItem(dedupeKey, new Date().toISOString());
+        return true;
+      };
+      if (trackSchedule()) return;
+      let attempts = 0;
+      const timer = window.setInterval(() => {
+        attempts += 1;
+        if (trackSchedule() || attempts >= 40) window.clearInterval(timer);
+      }, 250);
+    })();
+  </script>
+</body>
+</html>
