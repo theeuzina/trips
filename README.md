@@ -25,6 +25,7 @@ The page is self-contained: `index.html` contains the layout and styling, and th
 
 A conservation and wellness safari retreat at Amaya Lodge, Timbavati, South Africa. The page is a self-hosted copy of the original Gamma site (the-wild-within-clg5uxo.gamma.site), rebuilt as a self-contained `index.html` with its images in `assets/`.
 
-- Gamma's layout is reproduced as twelve cards. On screens narrower than 1100px each card stacks its photo above its text; Gamma's own narrow-screen layout didn't.
+- Gamma's layout is reproduced as twelve cards, with Gamma's margins (32px, cards at most 1161px wide). On screens narrower than 1024px each card stacks its photo above its text; Gamma's own narrow-screen layout didn't.
+- Gamma's fade-ins are reproduced with the same timing: each block fades in and rises 20px over 1s once it is 100px inside the viewport, and boxes in a group follow 0.15s apart. The first card animates in CSS on load, starting at 1% opacity so Chrome still records the first paint (FCP/LCP). Visitors who ask for reduced motion get no animation.
 - Gamma's icons are Font Awesome Pro, which can't be redistributed, so the page uses the closest [Phosphor](https://phosphoricons.com/) icons (MIT) instead, inlined as an SVG sprite. Phosphor has no elephant, so "Encounter" uses an eye.
 - The page has no booking buttons. The only link is the contact email.
