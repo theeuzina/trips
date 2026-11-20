@@ -20,3 +20,11 @@ The page is self-contained: `index.html` contains the layout and styling, and th
 
 - The first hero CTA scrolls to the investment section.
 - The remaining CTA buttons open the Mexico 2027 Calendly page.
+
+## [The Wild Within 2026](https://trips.theeuzina.com/safari/) ([docs/safari/](./docs/safari/))
+
+A conservation and wellness safari retreat at Amaya Lodge, Timbavati, South Africa. The page is a self-hosted copy of the original Gamma site (the-wild-within-clg5uxo.gamma.site), rebuilt as a self-contained `index.html` with its images in `assets/`.
+
+- Gamma's layout is reproduced as twelve cards. On screens narrower than 1100px each card stacks its photo above its text; Gamma's own narrow-screen layout didn't.
+- Gamma's icons are Font Awesome Pro, which can't be redistributed, so the page uses the closest [Phosphor](https://phosphoricons.com/) icons (MIT) instead, inlined as an SVG sprite. Phosphor has no elephant, so "Encounter" uses an eye.
+- The page has no booking buttons. The only link is the contact email.

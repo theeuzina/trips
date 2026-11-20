@@ -9,6 +9,7 @@ docs/                    GitHub Pages root, served at https://trips.theeuzina.co
   CNAME                  Custom domain. Managed by GitHub Pages; don't edit.
   index.html             Redirects the bare domain to https://www.theeuzina.com/
   favicon.svg, favicon.ico  Shared site icon (the theeuzina.com mark; .ico is a 48px fallback)
+  assets/fonts/          Self-hosted web fonts shared by all pages
   <slug>/index.html      One landing page per trip, e.g. docs/mexico/
   <slug>/assets/         That page's published images and fonts
 originals/<slug>/        Full-size source images for each page. Committed, NOT published.
@@ -24,7 +25,7 @@ Everything under `docs/` is public. Never put source files, drafts or anything p
   ```sh
   grep -o 'https\?://[^"'"'"' )]*' docs/<slug>/index.html | sort -u
   ```
-- Fonts (DM Sans and Fraunces, variable `woff2`, latin and latin-ext subsets) are self-hosted in `docs/mexico/assets/fonts/` and declared with `@font-face` in the page's `<style>`. If a new page uses the same fonts, move them to a shared `docs/assets/fonts/` and point both pages at it instead of duplicating them.
+- Fonts are self-hosted in the shared `docs/assets/fonts/` (latin and latin-ext `woff2` subsets) and declared with `@font-face` in each page's `<style>`, using root-relative URLs (`/assets/fonts/…`) so every page and its preloads share one cached file. Available: DM Sans (variable, 400–700), Fraunces (variable, weights 100–900 plus the `opsz` axis) and Nobile (static 400 and 700). Reuse these before adding new ones; add new fonts to the same folder.
 - Link the shared icon in `<head>`: `<link rel="icon" href="/favicon.ico" sizes="48x48">` and `<link rel="icon" href="/favicon.svg" type="image/svg+xml">`.
 - Add a section for the new page to `README.md`.
 
@@ -32,7 +33,7 @@ Everything under `docs/` is public. Never put source files, drafts or anything p
 
 Requires `cwebp` (`brew install webp`). `sips` (built into macOS) reads dimensions.
 
-1. Save the full-size original to `originals/<slug>/<name>.jpg`, using a short, descriptive, kebab-case name. Use the highest-resolution version available. Never hotlink.
+1. Save the full-size original to `originals/<slug>/<name>.jpg` (keep `.png` if that's the original's format), using a short, descriptive, kebab-case name. Use the highest-resolution version available. Never hotlink.
 2. Generate WebP versions into `docs/<slug>/assets/`, named `<name>-<width>.webp`:
 
    | Kind | Widths | Quality |
