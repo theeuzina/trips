@@ -8,7 +8,7 @@
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/nobile-bold-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/yoga-warrior-sunrise-700.webp" imagesrcset="assets/yoga-warrior-sunrise-700.webp 700w, assets/yoga-warrior-sunrise-864.webp 864w" imagesizes="(max-width:1100px) 92vw, min(436px, 34vw)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/yoga-warrior-sunrise-700.webp" imagesrcset="assets/yoga-warrior-sunrise-700.webp 700w, assets/yoga-warrior-sunrise-864.webp 864w" imagesizes="(max-width:1023px) 92vw, min(436px, 37.5vw - 24px)" fetchpriority="high">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
@@ -18,13 +18,13 @@
     @font-face{font-family:"Nobile";font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/nobile-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
     @font-face{font-family:"Nobile";font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/nobile-bold-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
     @font-face{font-family:"Nobile";font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/nobile-bold-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-    :root{--page:#deeee1;--card:#fafffa;--shadow:#4a644e;--head:#3b4540;--text:#405449;--green:#438951;--line:#ced9ce;--mint:#aee4bd;--serif:"Fraunces",Georgia,serif;--sans:"Nobile",Arial,sans-serif}
+    :root{--page:#deeee1;--card:#fafffa;--shadow:#4a644e;--head:#3b4540;--text:#405449;--green:#438951;--line:#ced9ce;--mint:#aee4bd;--ease:cubic-bezier(.22,1,.36,1);--serif:"Fraunces",Georgia,serif;--sans:"Nobile",Arial,sans-serif}
     *{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--text);font-family:var(--sans);font-size:18px;line-height:1.6}a{color:inherit}
     .ic{width:1.3em;height:1.3em;fill:currentColor;flex:none}
 
     /* Cards: --s scales each card's type, like Gamma's per-card zoom */
-    .deck{padding:32px clamp(16px,9.7vw,140px) 72px}
-    .card{--s:1;--r:calc(21.6px*var(--s));position:relative;max-width:1161px;min-height:calc(min(1161px,100vw - 2*clamp(16px,9.7vw,140px))*.5625);margin:0 auto 64px;font-size:calc(18px*var(--s));background:var(--card) center/cover no-repeat;border-radius:var(--r);box-shadow:calc(9px*var(--s)) calc(9px*var(--s)) 0 var(--shadow);display:grid}
+    .deck{padding:32px;container-type:inline-size}
+    .card{--s:1;--r:calc(21.6px*var(--s));position:relative;max-width:1161px;min-height:calc(min(1161px,100vw - 64px)*.5625);min-height:calc(min(1161px,100cqw)*.5625);margin:0 auto 64px;font-size:calc(18px*var(--s));background:var(--card) center/cover no-repeat;border-radius:var(--r);box-shadow:calc(9px*var(--s)) calc(9px*var(--s)) 0 var(--shadow);display:grid;overflow:hidden;isolation:isolate}
     .card:last-child{margin-bottom:0}
     .body{padding:49.5px 63px;display:flex;flex-direction:column;justify-content:center;min-width:0}
     .split{grid-template-columns:37.5% minmax(0,1fr)}.split.right{grid-template-columns:minmax(0,1fr) 37.5%}
@@ -59,45 +59,51 @@
 
     /* Three-step row */
     .steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:0 1.4em;text-align:center}
-    .steps::before{content:"";position:absolute;left:0;right:0;top:1.05em;height:1px;background:var(--line)}
-    .step{position:relative;padding:5.1em 1em 0}.step::before{content:"";position:absolute;left:50%;top:1.5em;height:1.9em;width:1px;background:var(--line)}
-    .dot{position:absolute;top:0;left:50%;width:2.1em;height:2.1em;transform:translateX(-50%);border-radius:50%;background:#d6ecda;color:var(--text);display:grid;place-items:center}.dot .ic{width:1.25em;height:1.25em}
+        .step{position:relative;padding:5.1em 1em 0}.step::after{content:"";position:absolute;top:1.05em;left:-.7em;right:-.7em;height:1px;background:var(--line)}.step:first-child::after{left:0}.step:last-child::after{right:0}.step::before{content:"";position:absolute;left:50%;top:1.5em;height:1.9em;width:1px;background:var(--line)}
+    .dot{position:absolute;z-index:1;top:0;left:50%;width:2.1em;height:2.1em;transform:translateX(-50%);border-radius:50%;background:#d6ecda;color:var(--text);display:grid;place-items:center}.dot .ic{width:1.25em;height:1.25em}
     .step p{margin-top:.45em}
 
     /* Image-backed cards */
-    .lazy-bg{background-repeat:no-repeat}
-    .lodge{background-image:linear-gradient(rgba(250,255,250,.85),rgba(250,255,250,.85)),url('assets/tent-deck-chair-1000.webp')}
-    .itinerary{background-color:#1b1e1c;background-image:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),url('assets/giraffe-waterhole-1000.webp');color:#fff}.itinerary h2{color:#fff}
-    .investment{background-image:linear-gradient(rgba(250,255,250,.85),rgba(250,255,250,.85)),url('assets/leopard-branch-1000.webp')}
-    @media(min-width:1000px){.lodge{background-image:linear-gradient(rgba(250,255,250,.85),rgba(250,255,250,.85)),url('assets/tent-deck-chair-1024.webp')}.itinerary{background-image:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),url('assets/giraffe-waterhole-1280.webp')}.investment{background-image:linear-gradient(rgba(250,255,250,.85),rgba(250,255,250,.85)),url('assets/leopard-branch-1024.webp')}}
+    .bgimg{position:absolute;inset:0;z-index:-1;background:center/cover no-repeat}
+    .lodge .bgimg{background-image:linear-gradient(rgba(250,255,250,.85),rgba(250,255,250,.85)),url('assets/tent-deck-chair-1000.webp')}
+    .itinerary{background-color:#000;color:#fff}.itinerary h2{color:#fff}.itinerary .bgimg{background-image:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),url('assets/giraffe-waterhole-1000.webp')}
+    .investment .bgimg{background-image:linear-gradient(rgba(250,255,250,.85),rgba(250,255,250,.85)),url('assets/leopard-branch-1000.webp')}
+    @media(min-width:1000px){.lodge .bgimg{background-image:linear-gradient(rgba(250,255,250,.85),rgba(250,255,250,.85)),url('assets/tent-deck-chair-1024.webp')}.itinerary .bgimg{background-image:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),url('assets/giraffe-waterhole-1280.webp')}.investment .bgimg{background-image:linear-gradient(rgba(250,255,250,.85),rgba(250,255,250,.85)),url('assets/leopard-branch-1024.webp')}}
     .js .lazy-bg:not(.bg-in){background-image:none}
 
     /* Itinerary timeline */
-    .itin{list-style:none;padding:0;position:relative}.itin::before{content:"";position:absolute;left:1.1em;top:1.1em;bottom:0;width:1px;background:rgba(255,255,255,.85)}
+    .itin{list-style:none;padding:0}.itin li::after{content:"";position:absolute;left:1.1em;top:-.48em;bottom:-2.3em;width:1px;background:rgba(255,255,255,.85)}.itin li:first-child::after{top:.62em}.itin li:last-child::after{bottom:0}
     .itin li{position:relative;padding-left:6.1em}.itin li+li{margin-top:2.3em}.itin li::before{content:"";position:absolute;left:2.2em;top:.62em;width:3.15em;height:1px;background:rgba(255,255,255,.6)}
     .itin h3{font-size:1.25em;color:#fff}.itin p{margin-top:.55em}
-    .tile{position:absolute;left:0;top:-.48em;width:2.2em;height:2.2em;border-radius:.45em;background:#eef6ef;color:#2c3530;display:grid;place-items:center}.tile .ic{width:1.35em;height:1.35em}
+    .tile{position:absolute;z-index:1;left:0;top:-.48em;width:2.2em;height:2.2em;border-radius:.45em;background:#eef6ef;color:#2c3530;display:grid;place-items:center}.tile .ic{width:1.35em;height:1.35em}
+
+    /* Fade-ins (Gamma's timing). .fx and groups (.fxg) get .in from the script when they near the viewport.
+       The first card (.rise) animates in CSS only and starts at opacity .01, not 0: Chrome doesn't count fully transparent content as painted, so starting at 0 would leave the page with no FCP/LCP. */
+    .js .fx,.js .fxg>*{opacity:0;transform:translateY(20px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+    .js .fxg>*{transition-delay:calc(.15s*var(--i,1))}.fxg>:nth-child(2){--i:2}.fxg>:nth-child(3){--i:3}.fxg>:nth-child(4){--i:4}.fxg>:nth-child(5){--i:5}.fxg>:nth-child(6){--i:6}.fxg>:nth-child(7){--i:7}
+    .js .fx.in,.js .fxg.in>*{opacity:1;transform:none}
+    .rise{animation:rise 1s var(--ease) both}@keyframes rise{from{opacity:.01;transform:translateY(20px)}to{opacity:1;transform:none}}
+    @media(prefers-reduced-motion:reduce){.js .fx,.js .fxg>*{opacity:1;transform:none;transition:none}.rise{animation:none}}
 
     /* Closing card */
     blockquote{margin:0;border-left:2px solid var(--green);padding-left:1.5em;font-style:italic}
     ul.pay{padding-left:1.6em}ul.pay li+li{margin-top:.35em}ul.pay li::marker{font-size:.8em}
 
-    @media(max-width:1100px){
-      .deck{padding:32px clamp(16px,5vw,64px) 64px}
-      .card{min-height:0;margin-bottom:48px;font-size:calc(14px + 2px*var(--s))}
+    @media(max-width:1023px){
+      .card{min-height:0;font-size:calc(14px + 2px*var(--s))}
       .split,.split.right{display:flex;flex-direction:column}
       .media,.right .media{order:-1;aspect-ratio:16/10;min-height:0;border-radius:var(--r) var(--r) 0 0}
       .body{padding:40px 48px 44px}
     }
     @media(max-width:640px){
       .deck{padding:16px 16px 48px}
-      .card{margin-bottom:36px;--r:16px;box-shadow:6px 6px 0 var(--shadow)}
+      .card{margin-bottom:32px;--r:16px;box-shadow:6px 6px 0 var(--shadow)}
       .media,.right .media{aspect-ratio:var(--ratio,5/4)}
       .body{padding:28px 22px 32px}
       h1,h2{font-size:2.1em}.xl{font-size:2.4em}.sub{font-size:1.6em}
       .grid2,.bars,.lodge-boxes,.steps{grid-template-columns:1fr}.grid2{row-gap:2.4em}.grid2>.wide,.bars>.wide,.lodge-boxes .abox,.lodge-boxes .abox:nth-child(n+4){grid-column:auto}
       .gallery{grid-template-columns:1fr 1fr}
-      .steps{gap:1.6em}.steps::before,.step::before{display:none}.step{padding:3em 0 0}
+      .steps{gap:1.6em}.step::before,.step::after{display:none}.step{padding:3em 0 0}
       .itin li{padding-left:3.4em}.itin li::before{display:none}
     }
   </style>
@@ -127,33 +133,33 @@
   <main class="deck">
 
   <section class="card split">
-    <div class="media" style="--pos:center 20%;--ratio:4/5"><img src="assets/yoga-warrior-sunrise-700.webp" srcset="assets/yoga-warrior-sunrise-700.webp 700w, assets/yoga-warrior-sunrise-864.webp 864w" sizes="(max-width:1100px) 92vw, min(436px, 34vw)" width="864" height="1152" fetchpriority="high" decoding="async" alt="A woman in a yoga warrior pose on the savanna at sunrise"></div>
+    <div class="media rise" style="--pos:center 20%;--ratio:4/5"><img src="assets/yoga-warrior-sunrise-700.webp" srcset="assets/yoga-warrior-sunrise-700.webp 700w, assets/yoga-warrior-sunrise-864.webp 864w" sizes="(max-width:1023px) 92vw, min(436px, 37.5vw - 24px)" width="864" height="1152" fetchpriority="high" decoding="async" alt="A woman in a yoga warrior pose on the savanna at sunrise"></div>
     <div class="body">
-      <h1>The Wild Within</h1>
+      <h1 class="rise">The Wild Within</h1>
       <div class="meta">
-        <p>A 5-Day Immersive Conservation &amp; Wellness Safari Retreat</p>
-        <p>February 28 – March 5, 2026</p>
-        <p>Amaya: Timbavati Private Game Reserve, South Africa</p>
-        <p>Hosted by Zina Wilde &amp; Darren Britz (Dazmental)</p>
+        <p class="rise">A 5-Day Immersive Conservation &amp; Wellness Safari Retreat</p>
+        <p class="rise">February 28 – March 5, 2026</p>
+        <p class="rise">Amaya: Timbavati Private Game Reserve, South Africa</p>
+        <p class="rise">Hosted by Zina Wilde &amp; Darren Britz (Dazmental)</p>
       </div>
     </div>
   </section>
 
   <section class="card split right">
     <div class="body">
-      <h2>Overview</h2>
-      <p><em>The Wild Within</em> is a next-generation safari retreat crafted for those seeking meaning, beauty, and connection. Over 6 days and 5 nights, you'll go beyond the surface of a traditional safari — combining Big Five wildlife sightings with hands-on conservation, cultural immersion, and grounding wellness practices.</p>
-      <p>From rhino tracking to fireside storytelling, you'll walk away more connected, more grounded, and more alive.</p>
+      <h2 class="fx">Overview</h2>
+      <p class="fx"><em>The Wild Within</em> is a next-generation safari retreat crafted for those seeking meaning, beauty, and connection. Over 6 days and 5 nights, you'll go beyond the surface of a traditional safari — combining Big Five wildlife sightings with hands-on conservation, cultural immersion, and grounding wellness practices.</p>
+      <p class="fx">From rhino tracking to fireside storytelling, you'll walk away more connected, more grounded, and more alive.</p>
     </div>
-    <div class="media" style="--pos:center 70%"><img src="assets/lodge-aerial-700.webp" srcset="assets/lodge-aerial-700.webp 700w, assets/lodge-aerial-1200.webp 1200w" sizes="(max-width:1100px) 92vw, min(436px, 34vw)" width="2623" height="3934" loading="lazy" decoding="async" alt="Aerial view of Amaya Lodge's tented suites in the bushveld at sunset"></div>
+    <div class="media fx" style="--pos:center 70%"><img src="assets/lodge-aerial-700.webp" srcset="assets/lodge-aerial-700.webp 700w, assets/lodge-aerial-1200.webp 1200w" sizes="(max-width:1023px) 92vw, min(436px, 37.5vw - 24px)" width="2623" height="3934" loading="lazy" decoding="async" alt="Aerial view of Amaya Lodge's tented suites in the bushveld at sunset"></div>
   </section>
 
   <section class="card split" style="--s:.65">
-    <div class="media" style="--pos:center 35%"><img src="assets/guest-tall-grass-700.webp" srcset="assets/guest-tall-grass-700.webp 700w, assets/guest-tall-grass-1200.webp 1200w" sizes="(max-width:1100px) 92vw, min(436px, 34vw)" width="1365" height="2048" loading="lazy" decoding="async" alt="A guest in a safari hat walking through tall golden grass"></div>
+    <div class="media fx" style="--pos:center 35%"><img src="assets/guest-tall-grass-700.webp" srcset="assets/guest-tall-grass-700.webp 700w, assets/guest-tall-grass-1200.webp 1200w" sizes="(max-width:1023px) 92vw, min(436px, 37.5vw - 24px)" width="1365" height="2048" loading="lazy" decoding="async" alt="A guest in a safari hat walking through tall golden grass"></div>
     <div class="body">
-      <h2>Timbavati Private Game Reserve</h2>
-      <p>A Big Five stronghold in the heart of the Greater Kruger wilderness.</p>
-      <div class="grid2">
+      <h2 class="fx">Timbavati Private Game Reserve</h2>
+      <p class="fx">A Big Five stronghold in the heart of the Greater Kruger wilderness.</p>
+      <div class="grid2 fxg">
         <div class="ibox"><span class="badge"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></span><h3>Exclusive Access</h3><p>A private reserve within the Greater Kruger National Park, offering an exclusive slice of Africa's most iconic wildlife area.</p></div>
         <div class="ibox"><span class="badge"><svg class="ic" aria-hidden="true"><use href="#i-binoculars"/></svg></span><h3>Intimate Encounters</h3><p>Experience low-impact safaris with limited vehicle traffic, ensuring deeply personal and immersive wildlife encounters.</p></div>
         <div class="ibox"><span class="badge"><svg class="ic" aria-hidden="true"><use href="#i-paw-print"/></svg></span><h3>Big Five Stronghold</h3><p>Renowned for exceptional Big Five game viewing, Timbavati boasts high densities of leopard, iconic lion prides, large herds of elephants and more.</p></div>
@@ -163,17 +169,18 @@
     </div>
   </section>
 
-  <section class="card lodge lazy-bg" style="--s:.75">
+  <section class="card lodge" style="--s:.75">
+    <div class="bgimg fx lazy-bg" aria-hidden="true"></div>
     <div class="body">
-      <h2>Amaya Lodge: Luxury in Timbavati</h2>
-      <p>An exclusive sanctuary for comfort and conservation in South Africa's Greater Kruger.</p>
-      <div class="gallery">
-        <img src="assets/tented-suite-700.webp" srcset="assets/tented-suite-700.webp 700w, assets/tented-suite-1200.webp 1200w" sizes="(max-width:640px) calc(50vw - 44px), (max-width:1100px) 22vw, 250px" width="2048" height="1365" loading="lazy" decoding="async" alt="A tented suite at Amaya Lodge surrounded by bush">
-        <img src="assets/suite-desk-700.webp" srcset="assets/suite-desk-700.webp 700w, assets/suite-desk-1200.webp 1200w" sizes="(max-width:640px) calc(50vw - 44px), (max-width:1100px) 22vw, 250px" width="2048" height="1365" loading="lazy" decoding="async" alt="Inside a tented suite, with a desk and armchair facing the bush">
-        <img src="assets/suite-bathroom-700.webp" srcset="assets/suite-bathroom-700.webp 700w, assets/suite-bathroom-1200.webp 1200w" sizes="(max-width:640px) calc(50vw - 44px), (max-width:1100px) 22vw, 250px" width="2048" height="1365" loading="lazy" decoding="async" alt="En-suite bathroom with a marble wall and rain shower">
-        <img src="assets/suite-deck-700.webp" srcset="assets/suite-deck-700.webp 700w, assets/suite-deck-1200.webp 1200w" sizes="(max-width:640px) calc(50vw - 44px), (max-width:1100px) 22vw, 250px" width="2048" height="1365" loading="lazy" decoding="async" alt="Private deck with loungers outside a tented suite">
+      <h2 class="fx">Amaya Lodge: Luxury in Timbavati</h2>
+      <p class="fx">An exclusive sanctuary for comfort and conservation in South Africa's Greater Kruger.</p>
+      <div class="gallery fxg">
+        <img src="assets/tented-suite-700.webp" srcset="assets/tented-suite-700.webp 700w, assets/tented-suite-1200.webp 1200w" sizes="(max-width:640px) calc(50vw - 44px), (max-width:1023px) 22vw, 250px" width="2048" height="1365" loading="lazy" decoding="async" alt="A tented suite at Amaya Lodge surrounded by bush">
+        <img src="assets/suite-desk-700.webp" srcset="assets/suite-desk-700.webp 700w, assets/suite-desk-1200.webp 1200w" sizes="(max-width:640px) calc(50vw - 44px), (max-width:1023px) 22vw, 250px" width="2048" height="1365" loading="lazy" decoding="async" alt="Inside a tented suite, with a desk and armchair facing the bush">
+        <img src="assets/suite-bathroom-700.webp" srcset="assets/suite-bathroom-700.webp 700w, assets/suite-bathroom-1200.webp 1200w" sizes="(max-width:640px) calc(50vw - 44px), (max-width:1023px) 22vw, 250px" width="2048" height="1365" loading="lazy" decoding="async" alt="En-suite bathroom with a marble wall and rain shower">
+        <img src="assets/suite-deck-700.webp" srcset="assets/suite-deck-700.webp 700w, assets/suite-deck-1200.webp 1200w" sizes="(max-width:640px) calc(50vw - 44px), (max-width:1023px) 22vw, 250px" width="2048" height="1365" loading="lazy" decoding="async" alt="Private deck with loungers outside a tented suite">
       </div>
-      <div class="lodge-boxes">
+      <div class="lodge-boxes fxg">
         <div class="abox"><b>Intimate &amp; Exclusive:</b> Private, tranquil, and personalized service for up to eight guests.</div>
         <div class="abox"><b>Elegant Tented Suites:</b> King bed, indoor/outdoor showers, private decks with bushveld views, climate control, and spacious en-suite bathrooms.</div>
         <div class="abox"><b>Gourmet Dining &amp; Fireside Ambiance:</b> All-inclusive African fusion cuisine with local ingredients, outdoor boma dinners under the stars, paired with South African wines.</div>
@@ -184,31 +191,31 @@
   </section>
 
   <section class="card split">
-    <div class="media"><img src="assets/tent-sunrise-view-700.webp" srcset="assets/tent-sunrise-view-700.webp 700w, assets/tent-sunrise-view-1200.webp 1200w" sizes="(max-width:1100px) 92vw, min(436px, 34vw)" width="2048" height="1366" loading="lazy" decoding="async" alt="The view from a tented suite's bed across the deck to the bush at sunrise"></div>
+    <div class="media fx"><img src="assets/tent-sunrise-view-700.webp" srcset="assets/tent-sunrise-view-700.webp 700w, assets/tent-sunrise-view-1200.webp 1200w" sizes="(max-width:1023px) 92vw, min(436px, 37.5vw - 24px)" width="2048" height="1366" loading="lazy" decoding="async" alt="The view from a tented suite's bed across the deck to the bush at sunrise"></div>
     <div class="body">
-      <h2 class="xl">Trip Highlights</h2>
-      <p>A preview of the unforgettable experiences that await.</p>
+      <h2 class="xl fx">Trip Highlights</h2>
+      <p class="fx">A preview of the unforgettable experiences that await.</p>
     </div>
   </section>
 
   <section class="card split right" style="--s:.8">
     <div class="body">
-      <h2>Rhino Conservation Experience</h2>
-      <p>Go beyond traditional safari with a hands-on experience tracking wild rhinos, learning about their conservation, and exploring the intricate ecosystem they call home.</p>
-      <div class="grid2 centered">
+      <h2 class="fx">Rhino Conservation Experience</h2>
+      <p class="fx">Go beyond traditional safari with a hands-on experience tracking wild rhinos, learning about their conservation, and exploring the intricate ecosystem they call home.</p>
+      <div class="grid2 centered fxg">
         <div class="ibox"><span class="badge"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></span><h3>Track Wild Rhinos</h3><p>Join expert conservationists to monitor and track endangered rhinos in their natural habitat, contributing directly to vital protection efforts.</p></div>
         <div class="ibox"><span class="badge"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span><h3>Protection Education</h3><p>Learn about the complex history of rhino conservation and the innovative approaches being employed to save these magnificent creatures from extinction.</p></div>
         <div class="ibox wide"><span class="badge"><svg class="ic" aria-hidden="true"><use href="#i-microscope"/></svg></span><h3>Ecosystem Exploration</h3><p>Discover the fascinating interconnectedness of the enviroment by examining middens, rubbing posts, and observing the crucial role of dung beetles in the ecosystem.</p></div>
       </div>
     </div>
-    <div class="media" style="--pos:70% center"><img src="assets/rhino-savanna-700.webp" srcset="assets/rhino-savanna-700.webp 700w, assets/rhino-savanna-864.webp 864w" sizes="(max-width:1100px) 92vw, min(436px, 34vw)" width="864" height="1152" loading="lazy" decoding="async" alt="A rhino grazing on the open savanna"></div>
+    <div class="media fx" style="--pos:70% center"><img src="assets/rhino-savanna-700.webp" srcset="assets/rhino-savanna-700.webp 700w, assets/rhino-savanna-864.webp 864w" sizes="(max-width:1023px) 92vw, min(436px, 37.5vw - 24px)" width="864" height="1152" loading="lazy" decoding="async" alt="A rhino grazing on the open savanna"></div>
   </section>
 
   <section class="card split" style="--s:.7">
-    <div class="media" style="--pos:center 40%"><img src="assets/yoga-tree-pose-700.webp" srcset="assets/yoga-tree-pose-700.webp 700w, assets/yoga-tree-pose-864.webp 864w" sizes="(max-width:1100px) 92vw, min(436px, 34vw)" width="864" height="1152" loading="lazy" decoding="async" alt="Silhouette of a woman in tree pose at sunset"></div>
+    <div class="media fx" style="--pos:center 40%"><img src="assets/yoga-tree-pose-700.webp" srcset="assets/yoga-tree-pose-700.webp 700w, assets/yoga-tree-pose-864.webp 864w" sizes="(max-width:1023px) 92vw, min(436px, 37.5vw - 24px)" width="864" height="1152" loading="lazy" decoding="async" alt="Silhouette of a woman in tree pose at sunset"></div>
     <div class="body">
-      <h2>Wilderness Wellness at Timbavati</h2>
-      <div class="stack">
+      <h2 class="fx">Wilderness Wellness at Timbavati</h2>
+      <div class="stack fxg">
         <div class="obox"><h3>Yoga &amp; Breathwork</h3><p>Gentle Vinyasa sessions in a shaded clearing; guided pranayama to the soundtrack of birdcalls and rustling acacia leaves.</p></div>
         <div class="obox"><h3>Guided Meditation</h3><p>Sunrise and sunset sits overlooking the plains—invigorating stillness in the bush.</p></div>
         <div class="obox"><h3>Fireside Storytelling</h3><p>Intimate gatherings under a canopy of stars; wisdom-sharing by the crackling fire.</p></div>
@@ -220,27 +227,28 @@
 
   <section class="card split right" style="--s:.65">
     <div class="body">
-      <h2 class="xl center">The Safari Experience</h2>
-      <p class="lede center">Immerse yourself in the wonders of nature with morning and evening safaris, capturing wildlife sightings and mesmerizing landscapes. Delve deeper into the wilderness on a guided bushwalk to truly connect with nature and its beauty.</p>
-      <div class="grid2 centered">
+      <h2 class="xl center fx">The Safari Experience</h2>
+      <p class="lede center fx">Immerse yourself in the wonders of nature with morning and evening safaris, capturing wildlife sightings and mesmerizing landscapes. Delve deeper into the wilderness on a guided bushwalk to truly connect with nature and its beauty.</p>
+      <div class="grid2 centered fxg">
         <div class="ibox"><span class="badge"><svg class="ic" aria-hidden="true"><use href="#i-sun"/></svg></span><h3>Morning Drives</h3><p>Witness the bush awaken before sunrise, with a signature South African coffee stop and epic wildlife encounters with Africa's diverse and iconic array of wildlife.</p></div>
         <div class="ibox"><span class="badge"><svg class="ic" aria-hidden="true"><use href="#i-moon"/></svg></span><h3>Evening Drives</h3><p>Track big cats, elephants, buffalo and more as golden hour sets in, ending with a scenic sundowner.</p></div>
       </div>
-      <h3 class="sub">Beyond the Vehicle &amp; On Foot</h3>
-      <p>Explore the untamed Timbavati wilderness on guided bushwalks led by our expert rangers, offering an intimate connection to the land while ensuring your safety.</p>
-      <div class="steps">
+      <h3 class="sub fx">Beyond the Vehicle &amp; On Foot</h3>
+      <p class="fx">Explore the untamed Timbavati wilderness on guided bushwalks led by our expert rangers, offering an intimate connection to the land while ensuring your safety.</p>
+      <div class="steps fxg">
         <div class="step"><span class="dot"><svg class="ic" aria-hidden="true"><use href="#i-paw-print"/></svg></span><h4>Tracking</h4><p>Follow animal tracks and signs with your guide, deciphering the bush's hidden stories and anticipating wildlife movements.</p></div>
         <div class="step"><span class="dot"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></span><h4>Encounter</h4><p>Approach wildlife on foot, observing their natural rhythms from a respectful distance, with heightened senses.</p></div>
         <div class="step"><span class="dot"><svg class="ic" aria-hidden="true"><use href="#i-magnifying-glass"/></svg></span><h4>Discover</h4><p>Uncover the intricate web of life in the Timbavati ecosystem, from delicate flora to industrious insects, and their vital roles.</p></div>
       </div>
     </div>
-    <div class="media" style="--pos:center 60%"><img src="assets/game-drive-sunset-700.webp" srcset="assets/game-drive-sunset-700.webp 700w, assets/game-drive-sunset-896.webp 896w" sizes="(max-width:1100px) 92vw, min(436px, 34vw)" width="896" height="1152" loading="lazy" decoding="async" alt="Guests in an open safari vehicle on an evening game drive at sunset"></div>
+    <div class="media fx" style="--pos:center 60%"><img src="assets/game-drive-sunset-700.webp" srcset="assets/game-drive-sunset-700.webp 700w, assets/game-drive-sunset-896.webp 896w" sizes="(max-width:1023px) 92vw, min(436px, 37.5vw - 24px)" width="896" height="1152" loading="lazy" decoding="async" alt="Guests in an open safari vehicle on an evening game drive at sunset"></div>
   </section>
 
-  <section class="card itinerary lazy-bg" style="--s:.65">
+  <section class="card itinerary" style="--s:.65">
+    <div class="bgimg fx lazy-bg" aria-hidden="true"></div>
     <div class="body">
-      <h2 class="xl center">Retreat Itinerary</h2>
-      <ol class="itin">
+      <h2 class="xl center fx">Retreat Itinerary</h2>
+      <ol class="itin fxg">
         <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-airplane-landing"/></svg></span><h3>Day 1: Traditional Safari Arrival</h3><p>Welcome to Amaya Lodge! Settle into your luxurious tented suite before embarking on an exhilarating afternoon game drive, culminating in sunset drinks.</p><p>As evening falls, join us for a fireside welcome dinner and the retreat's opening circle.</p></li>
         <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></span><h3>Day 2: Conservation Experience</h3><p>Track rhinos and explore their world through the eyes of those protecting them, gaining rare insight into one of Africa’s most pressing conservation efforts. The afternoon includes a dedicated conservation workshop with our experts, followed by time in the nearby town of Hoedspruit to experience local culture, community life, and the spirit of the region—ending with dinner at Amaya.</p></li>
         <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-paw-print"/></svg></span><h3>Day 3: Walking Safari &amp; Wild Picnic</h3><p>Immerse yourself in the bush on a morning guided walk with our expert rangers, learning to track wildlife and interpret the subtle language of the land. The journey leads to a remote riverbed for a mindful picnic and yoga session in the wild, where stillness meets nature in its purest form. The day concludes with an evening game drive and a reflective fireside dinner under the stars.</p></li>
@@ -252,10 +260,10 @@
   </section>
 
   <section class="card split" style="--s:.65">
-    <div class="media" style="--ratio:4/3"><img src="assets/lodge-lounge-700.webp" srcset="assets/lodge-lounge-700.webp 700w, assets/lodge-lounge-1200.webp 1200w" sizes="(max-width:1100px) 92vw, min(436px, 34vw)" width="2048" height="1365" loading="lazy" decoding="async" alt="Amaya Lodge's main lounge under fringed pendant lights"></div>
+    <div class="media fx" style="--ratio:4/3"><img src="assets/lodge-lounge-700.webp" srcset="assets/lodge-lounge-700.webp 700w, assets/lodge-lounge-1200.webp 1200w" sizes="(max-width:1023px) 92vw, min(436px, 37.5vw - 24px)" width="2048" height="1365" loading="lazy" decoding="async" alt="Amaya Lodge's main lounge under fringed pendant lights"></div>
     <div class="body">
-      <h2>What’s Included</h2>
-      <div class="bars">
+      <h2 class="fx">What’s Included</h2>
+      <div class="bars fxg">
         <div class="abox"><h3>Luxury Tented Accommodation</h3><p>Five nights at Amaya Lodge, ensuring unparalleled comfort and a deep connection with nature.</p></div>
         <div class="abox"><h3>All Meals Included</h3><p>Gourmet breakfasts, lunches, dinners, and delightful teas, coffees and snacks.</p></div>
         <div class="abox"><h3>Beverages</h3><p>A selection of local wines, beers, filtered water, soft drinks, and standard mixes.</p></div>
@@ -264,8 +272,8 @@
         <div class="abox"><h3>Conservation &amp; Park Fees</h3><p>All essential reserve entry fees and conservation levies are covered.</p></div>
         <div class="abox wide"><h3>Full Hosting Team</h3><p>A dedicated on-site team of expert guides, wellness facilitators, and comprehensive logistics support.</p></div>
       </div>
-      <h2>What’s Not Included</h2>
-      <div class="bars">
+      <h2 class="fx">What’s Not Included</h2>
+      <div class="bars fxg">
         <div class="abox"><h3>International &amp; Domestic Flights</h3><p>Your flights to and from South Africa and Johannesburg to Hoedspruit.</p></div>
         <div class="abox"><h3>Premium &amp; Top-Shelf Alcohol</h3><p>Imported spirits and exclusive wine selections.</p></div>
         <div class="abox wide"><h3>Personal Expenses</h3><p>Souvenirs, gratuities, additional snacks, and any personal items purchased.</p></div>
@@ -273,39 +281,45 @@
     </div>
   </section>
 
-  <section class="card investment lazy-bg">
+  <section class="card investment">
+    <div class="bgimg fx lazy-bg" aria-hidden="true"></div>
     <div class="body">
-      <h2>Your Investment in the Wild</h2>
-      <p>A once-in-a-lifetime experience designed for deep connection, rest, and discovery.</p>
-      <div class="grid2 price">
+      <h2 class="fx">Your Investment in the Wild</h2>
+      <p class="fx">A once-in-a-lifetime experience designed for deep connection, rest, and discovery.</p>
+      <div class="grid2 price fxg">
         <div class="ibox"><span class="badge"><svg class="ic" aria-hidden="true"><use href="#i-bed"/></svg></span><h3>Single Occupancy</h3><b>$8,000 per person</b><p>Perfect for solo travellers who value space and privacy.</p></div>
         <div class="ibox"><span class="badge"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Sharing</h3><b>$7,500 per person</b><p>Ideal for couples or friends sharing a tented suite.</p></div>
       </div>
-      <h3 class="sub">Payment Details</h3>
+      <h3 class="sub fx">Payment Details</h3>
       <ul class="pay">
-        <li>25% Deposit secures your space.</li>
-        <li>Flexible payment plans available — settle the balance in 2 or 3 easy instalments.</li>
-        <li>Full payment due 60 days before arrival.</li>
+        <li class="fx">25% Deposit secures your space.</li>
+        <li class="fx">Flexible payment plans available — settle the balance in 2 or 3 easy instalments.</li>
+        <li class="fx">Full payment due 60 days before arrival.</li>
       </ul>
     </div>
   </section>
 
   <section class="card split right">
     <div class="body center">
-      <h2>The Wild Within</h2>
-      <p>Where adventure meets meaning and luxury meets purpose.</p>
-      <blockquote><p>"We don't remember days, we remember moments."</p></blockquote>
-      <p>February 28 – March 5, 2026</p>
-      <p>Timbavati Private Game Reserve, South Africa</p>
-      <p>Contact: <a href="mailto:zinawilde@gmail.com">zinawilde@gmail.com</a></p>
+      <h2 class="fx">The Wild Within</h2>
+      <p class="fx">Where adventure meets meaning and luxury meets purpose.</p>
+      <blockquote class="fx"><p>"We don't remember days, we remember moments."</p></blockquote>
+      <p class="fx">February 28 – March 5, 2026</p>
+      <p class="fx">Timbavati Private Game Reserve, South Africa</p>
+      <p class="fx">Contact: <a href="mailto:zinawilde@gmail.com">zinawilde@gmail.com</a></p>
     </div>
-    <div class="media" style="--pos:60% center;--ratio:4/5"><img src="assets/yoga-warrior-savanna-700.webp" srcset="assets/yoga-warrior-savanna-700.webp 700w, assets/yoga-warrior-savanna-864.webp 864w" sizes="(max-width:1100px) 92vw, min(436px, 34vw)" width="864" height="1152" loading="lazy" decoding="async" alt="A woman in a yoga warrior pose on the savanna"></div>
+    <div class="media fx" style="--pos:60% center;--ratio:4/5"><img src="assets/yoga-warrior-savanna-700.webp" srcset="assets/yoga-warrior-savanna-700.webp 700w, assets/yoga-warrior-savanna-864.webp 864w" sizes="(max-width:1023px) 92vw, min(436px, 37.5vw - 24px)" width="864" height="1152" loading="lazy" decoding="async" alt="A woman in a yoga warrior pose on the savanna"></div>
   </section>
 
   </main>
   <script>
     const bg=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('bg-in');bg.unobserve(e.target)}}),{rootMargin:'800px 0px'});
     document.querySelectorAll('.lazy-bg').forEach(el=>bg.observe(el));
+    const fx=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting||e.boundingClientRect.bottom<0){e.target.classList.add('in');fx.unobserve(e.target)}}),{rootMargin:'0px 0px -100px 0px'});
+    document.querySelectorAll('.fx,.fxg').forEach(el=>fx.observe(el));
+    // Content in the page's last 100px can't cross the trigger line, so show whatever is left at the bottom.
+    const atEnd=()=>{if(innerHeight+scrollY<document.documentElement.scrollHeight-2)return;document.querySelectorAll('.fx:not(.in),.fxg:not(.in)').forEach(el=>{el.classList.add('in');fx.unobserve(el)});removeEventListener('scroll',atEnd)};
+    addEventListener('scroll',atEnd,{passive:true});
   </script>
 </body>
 </html>
